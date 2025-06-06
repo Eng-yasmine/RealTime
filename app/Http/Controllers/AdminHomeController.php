@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
@@ -16,5 +17,7 @@ class AdminHomeController extends Controller
     {
         return view('dashboard.home', get_defined_vars());
     }
+
+
 
 }

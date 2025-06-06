@@ -15,6 +15,7 @@ class Admin extends Authenticatable
     use HasFactory;
     use Notifiable;
 
+
     protected $guard = 'admin';
 
     /**

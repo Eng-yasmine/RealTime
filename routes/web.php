@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,14 +43,16 @@ require __DIR__ . '/auth.php';
 |--------------------------------------------------------------------------
 |
 */
+Route::get('/notifications/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['admin'])->group(function () {
 
         ##------------------------------------------------------- ADMIN INDEX PAGE
         Route::get('/', AdminHomeController::class)->name('index');
-        
     });
+
+
 
     require __DIR__ . '/adminAuth.php';
 });
