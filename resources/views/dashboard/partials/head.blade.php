@@ -22,7 +22,26 @@
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/daterangepicker.css">
     <!-- App CSS -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/app-light.css" id="lightTheme">
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/app-dark.css" id="darkTheme" disabled>
+    <link rel="stylesheet" href="{{ asset('assets/css/app-light.css') }}" id="lightTheme">
+    <link rel="stylesheet" href="{{ asset('assets/css/app-dark.css') }}" id="darkTheme" disabled>
     @stack('styles')
+    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('2e4ce1e823605ab90853', {
+            cluster: 'mt1'
+        });
+
+        var channel = pusher.subscribe('new-user-registered-channel');
+        // Bind to the event that you want to listen for
+        channel.bind('App\\Event\\NewUserRegisteredEvent', function (data) {
+            console.log('New user registered:', data['message']);
+            // You can update the UI or perform any action here
+            // For example, you can show a notification or update a counter
+
+        });
+    </script>
 </head>

@@ -16,4 +16,15 @@ class NotificationController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function ClearNotificationsMarker(Request $request)
+    {
+        // جلب المستخدم الحالي (مثلا admin guard لو عندك أدمن)
+        $user = auth()->guard('admin')->user();
+
+        // حذف كل النوتيفيكيشنز
+        $user->notifications()->delete();
+
+        return response()->json(['success' => true]);
+    }
 }

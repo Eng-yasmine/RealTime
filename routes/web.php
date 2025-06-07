@@ -37,13 +37,14 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-|
-*/
+
+
+
+// notifications mark as read
 Route::get('/notifications/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+//notifications mark delete
+Route::get('/notifications/clear', [NotificationController::class, 'DeleteNotificationsMarker'])->name('notifications.clear');
+
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['admin'])->group(function () {

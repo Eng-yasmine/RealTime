@@ -8,7 +8,7 @@
         <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2 notificationsIcon" href="./#" data-toggle="modal" data-target=".modal-notif">
                 <span class="fe fe-bell fe-16"></span>
-                <span class="dot dot-md bg-success">{{ Auth::guard('admin')->user()->unreadNotifications()->count() }}</span>
+                <span class="dot dot-md bg-success" id="notificationIconCounter">{{ Auth::guard('admin')->user()->unreadNotifications()->count() }}</span>
             </a>
         </li>
         {{-- Notification Modal --}}
@@ -22,7 +22,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="notificationsIconModal">
                         <div class="list-group list-group-flush my-n3">
                             @if (Auth::guard('admin')->user()->notifications->count() > 0)
 
@@ -105,7 +105,7 @@
 
                 <form action="{{ route('admin.logout') }}" method="POST" class="dropdown-item">
                     @csrf
-                    <button type="submit" class="border-0 bg-transparent p-0 text-danger">
+                    <button type="submit" class="border-0 bg-transparent p-0 text-danger" id="clearNotifications">
                         <span key="t-logout">{{ __('lang.logout') }}</span>
                     </button>
                 </form>
